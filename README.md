@@ -34,3 +34,7 @@ Create an API to register a new user on mongoDB. The overview: You fill up the e
 ### Create the Events API
 
 We are going to create the APIs to fetch regular and special events. Instead on interacting with mongoDB to fetch the events, we are going to hard-code an array of events in the api method itself, as we are only focusing on authenticating angular applications at the moment.
+
+## Angular App
+
+Generating a new angular application with routing using angular cli: `ng new ngApp --routing`.
