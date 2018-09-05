@@ -11,3 +11,5 @@ Creating a basic express server. APIs for user registration, user logging, fetch
 Initializing a npm project: `npm init`.
 
 install express web server and body-parser; the middle ware to handle form data such as user registration or login: `npm install express body-parser --save`.
+
+It is a good practice to have a separate route for all the API requests. So, define all the API end-points in this path: routes/api.js
