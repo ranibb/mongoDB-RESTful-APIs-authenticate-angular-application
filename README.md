@@ -37,4 +37,6 @@ We are going to create the APIs to fetch regular and special events. Instead on 
 
 ## Angular App
 
-Generating a new angular application with routing using angular cli: `ng new ngApp --routing`.
+Generating a new angular application with routing using angular cli: `ng new ngApp --routing`. 
+
+Generating 4 components: register, login, events and special-events using the comand: `ng g c name-of-the-component`.
