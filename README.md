@@ -27,3 +27,5 @@ As mentioned, mongoose translates the data in the database to a JavaScript objec
 ### Create the registration API and test it with POSTMAN
 
 Create an API to register a new user on mongoDB. The overview: You fill up the email and password in the frontend and submit the form. Then, the user data is sent to the API endpoint that internally save the user into mangoDB using mongoose.
+
+### Create the login API and test it with POSTMAN
