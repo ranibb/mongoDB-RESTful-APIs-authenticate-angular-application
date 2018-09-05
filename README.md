@@ -13,3 +13,13 @@ Initializing a npm project: `npm init`.
 install express web server and body-parser; the middle ware to handle form data such as user registration or login: `npm install express body-parser --save`.
 
 It is a good practice to have a separate route for all the API requests. So, define all the API end-points in this path: routes/api.js
+
+## Create a mongo database
+
+Next, create a mongo database that you can use to store and retrieve user information. Instead of creating the database locally, make use of the [mLab](https://mlab.com/) which provides database as a service.
+
+### Setup the API endpoints for the App
+
+Whenever a user makes a request to the server, the server needs to interact with mongodb to perform the required operations. For this interaction, we make use of [mongoose](https://mongoosejs.com/). mongoose is a npm package that provides mongodb object mapping. Or in simple words, mongoose translates the data in the database to a JavaScript object for use in our application. To install mongoose package, execute the command: `npm install mongoose --save` in the terminal.
+
+As mentioned, mongoose translates the data in the database to a JavaScript object. So, we need to have a blue print or a schema of that object. Therefore, create a model "user.js" and place it in model’s folder.
