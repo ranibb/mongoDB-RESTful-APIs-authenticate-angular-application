@@ -42,3 +42,11 @@ Generating a new angular application with routing using angular cli: `ng new ngA
 Generating 4 components: register, login, events and special-events using the comand: `ng g c name-of-the-component`.
 
 Setup the routes and use bootstrap to build up the initial html markup.
+
+### Registration UI
+
+build up the RegisterComponent html template and add a click handler that calls an event registerUser when the Register button is clicked.
+
+We need to retrieve the value from the input fields email and password and send it to the backend. Therefore, create a property in the RegisterComponent class and name it registerUserData and assign it to an empty object to it. Then we are going to bind the inputs field to this registerUserData property. So registerUserData is the object that contains the email and password values of the user about to be registered.
+
+For now, let's log to the browser's console on the click of the register button. For that, bind an event to the register button on click to call a method that we define in the RegisterComponent class to retrieve the registerUserData object.
