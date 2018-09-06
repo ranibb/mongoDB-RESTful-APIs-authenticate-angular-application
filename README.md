@@ -66,3 +66,7 @@ This is a CORS (Cross-origin resource sharing) error, because the frontend is ru
 To summaries, what is happening is called the "Request-Response Cycle". Or I may call it the "one click story".
 
 Begins with the frontend, in the RegisterComponent html, a button that calls the registerUser method from within the RegisterComponent class where the method is defined to call the AuthService passing in the registerUserData that were collected by the Two-Way binding on the input fields. The AuthService makes an http post request to the backend API URL passing in the registerUserData. In a good scenario, the backend registers that user in a mongoDB and returns the details of the registered user as a response that could be obtained from the returned observable that we subscribed to it when we called the AuthService. In a bad scenario, an error is returned instead that is also obtainable.
+
+### Login UI & Login Service
+
+Follow the same procedure we used for implementing the Registration UI and connecting it with the Backend API.
