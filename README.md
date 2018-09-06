@@ -73,4 +73,4 @@ Follow the same procedure we used for implementing the Registration UI and conne
 
 ### Events UI & Service
 
-Begin by generating a new service for the events and we call it event: `ng g s event`. Then create a service to fetch the regular and special events and subscribe to the observables in the respective components.
+Begin by generating a new service for the events and we call it event: `ng g s event`. Then create a service to fetch the regular and special events and subscribe to the observables in the respective components. Then build up the html for both regular and special events components.
