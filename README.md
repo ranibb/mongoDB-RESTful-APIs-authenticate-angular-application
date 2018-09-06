@@ -70,3 +70,7 @@ Begins with the frontend, in the RegisterComponent html, a button that calls the
 ### Login UI & Login Service
 
 Follow the same procedure we used for implementing the Registration UI and connecting it with the Backend API.
+
+### Events UI & Service
+
+Begin by generating a new service for the events and we call it event: `ng g s event`. Then create a service to fetch the regular and special events and subscribe to the observables in the respective components.
