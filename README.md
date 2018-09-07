@@ -74,3 +74,63 @@ Follow the same procedure we used for implementing the Registration UI and conne
 ### Events UI & Service
 
 Begin by generating a new service for the events and we call it event: `ng g s event`. Then create a service to fetch the regular and special events and subscribe to the observables in the respective components. Then build up the html for both regular and special events components.
+
+## Authentication
+
+Only authenticated users should be able to navigate to the special events view. For our application, an authenticated user is one whose information is stored in the database. So, there are two scenarios: First, is when a user registers. In this case the user's information is stored in the database. Second, is when the user logs in. A user logging in implies that the user entered valid credentials matching the information in the database. So, the user can be authenticated.
+
+But what exactly does it mean to authenticate a user when they register or login? For our application we are going to be implementing a Token-Based authentication:
+
+In the frontend when we register or login, we submit the user details to the server. The API suggest the details of the user from the database along with the auto generated object id. At this point the server generates a Token which is nothing but encrypted information that identifies the user and sends the Token as a response to the frontend. Once the response is received, the angular application stores the Token in the browser's local storage. 
+
+Now for every subsequent request, for example a request to either regular or special events, the frontend application sends the stored Token as part of the request. The server checks if the Token is present and then decrypts the Token to check for its validity. If it's a valid token the serve confirms that the request is from a user whose details it has already. In other words, the request is from an authenticated user. 
+
+Once the server confirms the validity, it sends the array of events as a response to the browser. If the token is not valid or if the token is not present at all as part of the request, it simply means that the request is not from an authenticated user and the server will respond with a status 401. Based on what the response is we can either display the events in the UI or redirect the user to the login view.
+
+### JSON Web Tokens (JWT)
+
+Let’s understand what exactly is a Token and how we will be generating and verifying Tokens in our application. The Token we will be using contains JSON data and is called a JSON Web Tokens (JWT).
+
+A JSON Web Token or JWT is a JSON object that is defined as a safe way to represent a set of information between two parties. The Token is composed of a header, a payload and a signature. So, a JWT is just a string with the following format: `header.payload.signature - xxxxx.yyyyy.zzzzz`:
+
+* The header typically consists of two parts, the type of the Token which is JWT and the hashing algorithm being used.
+* The payload component of the JWT is the data that is stored inside the JSON Web Token. In our example, the server creates a JWT with the user ID stored inside the payload.
+* The signature is used to verify the Token.
+
+You can go to [jwt.io](https://jwt.io) for more information on the format. For us though, what really matters is how a JWT is generated and verified. For that we use the jsonwebtoken npm package. To generate a new Token, we use the sign method passing the payload and a secret key and any options if required.
+
+    jwt.sign(payload, secretOrPrivateKey, [options, callback])
+
+The Token is then sent as a response to the frontend and the same Token is sent back to the server with every subsequent request. And to verify the Token sent back from the frontend we use the verify method passing in the Token itself along with the same secret key that was used to sign and any options again if required.
+
+    jwt.verify(token, secretOrPrivateKey, [options, callback])
+
+### Generating JWT in the back-end when a user registers or logs in.
+
+Navigate to the server folder and run this command `npm install jsonwebtoken --save` in the terminal. Then require the package in the api.js file and generating JWT in both the register & login APIs.
+
+#### Generating JWT in the register API
+
+After saving the user successfully, what we have to do first is create the payload. The payload is an object and will contain the registered user id. So, There for define a new variable payload and asign an object to it. By convention the key is called subject, and then the value will be the registered user object id.
+
+```JavaScript
+let payload = { subject: registeredUser._id } 
+```
+
+Now that we have the payload, lets assign a token and generate it. The first argument is the payload and the second argument is a secret key which it can be anything.
+
+```JavaScript
+let token = jwt.sign(payload, 'mySecretKey')
+```
+
+So now we have the JWT stored in the variable token. The last step is to send this token as an object instead of the registeredUser.
+
+```JavaScript
+res.status(200).send({token})
+```
+
+Alright, the register API now responses with a token instead of the registeredUser.
+
+#### Generating JWT in the login API
+
+Follow the same procedure and generating JWT for the login API.
