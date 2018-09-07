@@ -162,3 +162,17 @@ Next let the TokenInterceptorService class implements the HttpInterceptor interf
 The key is Authorization and the value it the token but, in a convention known as the Bearer token. The format is the word Bearer followed by a space followed by the actual token value. For now, let’s hard-code a json web token with a valid format 'xx.yy.zz'. And then we pass on the execution by returning next.handle and passing in the tokenizedReq. This should be sufficient to test if the interception is working. So, let's register this interceptor service in the app module.
 
 Next lets send the actual token instead of the hard-coded token value 'Bearer xx.yy.zz'. For that. create a new method in the AuthService that fetches the token value. Then we can use this method in the TokenInterceptorService.
+
+### Middleware to verify Token in the backend.
+
+A middleware is nothing but a function that gets executed before the user defined handler is executed. So, let's create a verify token middleware in the backend.
+
+Now we have Completed the authentication. We have an AuthGuard to check for the token in the frontend. And we have a verifyToken middleware in the backed to check if a token is valid or not.
+
+For testing purpose, try to create an invalid token in the local storage manually by using the chrome's developer console. There, type the following code:
+
+    localStorage.setItem('token', 'anything')
+
+You should get a jwt malformed exception with a 500 status.
+
+Exercise: Handle this exception.
