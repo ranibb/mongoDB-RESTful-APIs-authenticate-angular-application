@@ -21,6 +21,10 @@ export class AuthService {
   loggedIn() {
     return !!localStorage.getItem('token') // return true or false by using !!
   }
+
+  getToken() {
+    return localStorage.getItem('token')
+  }
 }
 
 /* Note: We specifiy a type of any <any> to be able to return the observable without any errors. */
