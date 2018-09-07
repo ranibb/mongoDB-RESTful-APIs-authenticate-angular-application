@@ -148,3 +148,15 @@ A route guard is nothing but a piece of code that controls navigation to and fro
 Generate the guard in the terminal by running the following command: `ng g guard auth` where auth is the name of the guard.
 
 And then create a method in the auth service that returns if a token exists in the local storage or not. Then implement a client-side route guard.
+
+### Creating a Token Interceptor
+
+Now we are going to verify the token in the backend to make sure it is valid. We do that by sending the stored token back to the server for verification. And the way to achieve that is angular http interceptor.
+
+The http interceptor basically intercepts outgoing https requests, transforms them and then sends it to the server. The interceptor we will be implementing will modify the request to contain the token that is stored in the browser's local storage.
+
+The first thing to do is to generate the service using angular CLI. Run the command `ng g s token-interceptor` in the terminal. Once it is generated open the token-interceptor.service.ts and import the HttpInterceptor.
+
+Next let the TokenInterceptorService class implements the HttpInterceptor interface. Now by asking the class to implement the interface we have to define an intercept method which takes two arguments; request and next to pass on the execution. Within the method, first let’s make a clone of the request. And to the cloned request lets add to the header the authorization information.
+
+The key is Authorization and the value it the token but, in a convention known as the Bearer token. The format is the word Bearer followed by a space followed by the actual token value. For now, let’s hard-code a json web token with a valid format 'xx.yy.zz'. And then we pass on the execution by returning next.handle and passing in the tokenizedReq. This should be sufficient to test if the interception is working. So, let's register this interceptor service in the app module.
