@@ -134,3 +134,7 @@ Alright, the register API now responses with a token instead of the registeredUs
 #### Generating JWT in the login API
 
 Follow the same procedure and generating JWT for the login API.
+
+### Storing JWT in the front-end
+
+Storing the token in the browser is simple and we will be making use of local storage. 
