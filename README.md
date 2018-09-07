@@ -146,3 +146,5 @@ Ensuring only authenticated users are able to view the special events. For that,
 A route guard is nothing but a piece of code that controls navigation to and from components. It can return true in which case the normal execution continues or return false in which case the navigation is stopped. For our scenario, if a token is present in the browser, it means that the server has sent a token to the frontend which can only happen if the user registers or logs in.
 
 Generate the guard in the terminal by running the following command: `ng g guard auth` where auth is the name of the guard.
+
+And then create a method in the auth service that returns if a token exists in the local storage or not. Then implement a client-side route guard.

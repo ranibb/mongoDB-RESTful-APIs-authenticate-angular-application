@@ -17,6 +17,10 @@ export class AuthService {
   loginUser(user) {
     return this.http.post<any>(this._loginUrl, user)
   }
+
+  loggedIn() {
+    return !!localStorage.getItem('token') // return true or false by using !!
+  }
 }
 
 /* Note: We specifiy a type of any <any> to be able to return the observable without any errors. */
