@@ -176,3 +176,11 @@ For testing purpose, try to create an invalid token in the local storage manuall
 You should get a jwt malformed exception with a 500 status.
 
 Exercise: Handle this exception.
+
+### To do (Improvements and new functionalities):
+* Encrypt the password: Make sure you don't store the password as plain text in the db. Encrypt it and Decrypt it.
+* Do not return the password: Whenever you return user details, make sure you don't return the password field. It definitely not necessary for the frontend.
+* Improve registration: Check if the e-mail already exists in the db and return an appropriate response
+* Add error handling: Mostly we just logged to the console what the error is. Instead add a catch error block. Throw it to the component and display an appropriate error message in the view so that the user understands what is going wrong.
+* Create a new event: Add a new view where registered users can create a new event and submit it. Let the event be stored in the db instead of being hard-coded.
+* Events created by a specific user: Add a view which displays all the events created by that specific user. Note: We were adding the user id as the payload to the JSON Web Token. This is where it comes to use create an API that fetches all the events created by the logged in user ID.
